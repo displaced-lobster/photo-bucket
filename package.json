@@ -1,0 +1,28 @@
+{
+  "name": "photography-site",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-cloudflare": "^7.2.9",
+    "@sveltejs/kit": "^2.68.0",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.7.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.2"
+  },
+  "type": "module",
+  "allowScripts": {
+    "svelte-preprocess@5.1.4": true,
+    "esbuild@0.28.1": true,
+    "workerd@1.20260630.1": true,
+    "sharp@0.34.5": true
+  }
+}

@@ -1,0 +1,14 @@
+name = "photography-worker"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[[r2_buckets]]
+binding = "PHOTOS_BUCKET"
+bucket_name = "photos"   # <-- replace with your R2 bucket name
+
+[vars]
+# Public base URL for images (your R2 public domain or custom domain)
+PHOTOS_BASE_URL = "https://pub-3453154dd8ba456081f3e0192d6a276e.r2.dev"
+
+[dev]
+port = 8787
