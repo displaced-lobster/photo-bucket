@@ -14,51 +14,19 @@ The SvelteKit app fetches album data from the Worker at runtime — no redeploy 
 
 ## R2 Bucket Structure
 
-Albums are top-level folders. Folder names drive sort order, so prefix them with a date.
+Each top-level folder is one row on the page. Folder names drive sort order, so name them so they sort correctly, e.g. `YYYY-MM-DD-NN`.
 
 ```
-2024-03-15_iceland/
-    meta.json
+2026-07-01-01/
     01.webp
     02.webp
     03.webp
-2024-06-01_norway/
-    meta.json
+2026-07-03-01/
     01.webp
     02.webp
 ```
 
-Albums are sorted alphabetically by folder name, so `2024-03-15_iceland` appears before `2024-06-01_norway`.
-
-## meta.json
-
-Every album folder must contain a `meta.json` file. Folders without one are silently skipped.
-
-```json
-{
-  "title": "Iceland, March 2024",
-  "rows": [
-    { "photos": ["01.webp", "02.webp"] },
-    { "photos": ["03.webp"] },
-    { "photos": ["04.webp", "05.webp", "06.webp"] }
-  ]
-}
-```
-
-### Fields
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `title` | string | Display title for the album |
-| `rows` | Row[] | Ordered list of photo rows |
-
-### Row
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `photos` | string[] | Filenames in this row. Length determines column layout: `1` = full width, `2` = half width each, `3` = third width each |
-
-Photos within a row are displayed left to right in the order listed. Rows are displayed top to bottom in the order listed.
+On desktop, every photo in a folder is laid out on a single line (a justified row: each photo keeps its aspect ratio and the row height is scaled so the row exactly fills the available width). On narrow/mobile screens, photos stack full-width instead.
 
 ## Local Development
 

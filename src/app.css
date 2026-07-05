@@ -1,0 +1,14 @@
+:root {
+  --bg: #121212;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #eee;
+}
+
+img {
+  border-radius: 20px;
+}

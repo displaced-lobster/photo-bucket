@@ -4,7 +4,8 @@ compatibility_date = "2024-01-01"
 
 [[r2_buckets]]
 binding = "PHOTOS_BUCKET"
-bucket_name = "photos"   # <-- replace with your R2 bucket name
+bucket_name = "photos"
+remote = true
 
 [vars]
 # Public base URL for images (your R2 public domain or custom domain)

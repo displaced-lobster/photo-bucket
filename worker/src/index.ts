@@ -4,18 +4,8 @@ interface Env {
 }
 
 interface Row {
-	photos: string[];
-}
-
-interface Meta {
-	title: string;
-	rows: Row[];
-}
-
-interface Album {
 	folder: string;
-	title: string;
-	rows: Row[];
+	photos: string[];
 }
 
 const CORS_HEADERS = {
@@ -35,20 +25,23 @@ export default {
 
 		const listed = await env.PHOTOS_BUCKET.list({ delimiter: '/' });
 
-		const folders = (listed.delimitedPrefixes ?? []).sort();
+		const folders = (listed.delimitedPrefixes ?? []).sort().reverse();
 
-		const albums: Album[] = (
+		const rows: Row[] = (
 			await Promise.all(
 				folders.map(async (folder) => {
-					const metaObj = await env.PHOTOS_BUCKET.get(`${folder}meta.json`);
-					if (!metaObj) return null;
-					const meta: Meta = await metaObj.json();
-					return { folder: folder.replace(/\/$/, ''), ...meta };
+					const listedPhotos = await env.PHOTOS_BUCKET.list({ prefix: folder, delimiter: '/' });
+					const photos = (listedPhotos.objects ?? [])
+						.map((obj) => obj.key.slice(folder.length))
+						.filter((name) => name.length > 0)
+						.sort();
+					if (photos.length === 0) return null;
+					return { folder: folder.replace(/\/$/, ''), photos };
 				})
 			)
-		).filter((a): a is Album => a !== null);
+		).filter((r): r is Row => r !== null);
 
-		const body = JSON.stringify({ albums, photosBaseUrl: env.PHOTOS_BASE_URL });
+		const body = JSON.stringify({ rows, photosBaseUrl: env.PHOTOS_BASE_URL });
 
 		const res = new Response(body, {
 			headers: {
