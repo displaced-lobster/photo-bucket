@@ -1,4 +1,4 @@
-name = "photography-worker"
+name = "photo-bucket"
 main = "src/index.ts"
 compatibility_date = "2024-01-01"
 
@@ -9,7 +9,7 @@ remote = true
 
 [vars]
 # Public base URL for images (your R2 public domain or custom domain)
-PHOTOS_BASE_URL = "photo-bucket.richardmills.ca"
+PHOTOS_BASE_URL = "https://photo-bucket.richardmills.ca"
 
 [dev]
 port = 8787
