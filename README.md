@@ -1,4 +1,4 @@
-# Photography Site
+# Photo Bucket
 
 A SvelteKit photography portfolio backed by Cloudflare R2 for image storage and a Cloudflare Worker for dynamic album listing.
 

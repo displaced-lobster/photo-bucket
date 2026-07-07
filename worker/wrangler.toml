@@ -9,7 +9,7 @@ remote = true
 
 [vars]
 # Public base URL for images (your R2 public domain or custom domain)
-PHOTOS_BASE_URL = "https://pub-3453154dd8ba456081f3e0192d6a276e.r2.dev"
+PHOTOS_BASE_URL = "photo-bucket.richardmills.ca"
 
 [dev]
 port = 8787
